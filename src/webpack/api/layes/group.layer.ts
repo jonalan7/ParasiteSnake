@@ -7,13 +7,14 @@ import {
   base64MimeType,
   resizeImg,
 } from '../../help';
+import { CallbackOnStatus } from './callback-on.layes';
 
 export class GroupLayer extends ListenerLayer {
   constructor(
     public page: Page,
     public browser: Browser,
     public options: CreateOptions,
-    public ev: any
+    public ev: CallbackOnStatus
   ) {
     super(page, browser, options, ev);
   }
@@ -34,7 +35,7 @@ export class GroupLayer extends ListenerLayer {
           { groupName, contacts }
         )
         .catch();
-      if (result.erro == true) {
+      if (result.error == true) {
         return reject(result);
       } else {
         return resolve(result);
@@ -58,7 +59,7 @@ export class GroupLayer extends ListenerLayer {
           { groupId, contacts }
         )
         .catch();
-      if (result.erro == true) {
+      if (result.error == true) {
         return reject(result);
       } else {
         return resolve(result);
@@ -83,7 +84,7 @@ export class GroupLayer extends ListenerLayer {
         { groupId, description }
       );
 
-      if (result.erro == true) {
+      if (result.error == true) {
         return reject(result);
       } else {
         return resolve(result);
@@ -130,7 +131,7 @@ export class GroupLayer extends ListenerLayer {
               groupId,
             }
           );
-          if (result.erro == true) {
+          if (result.error == true) {
             return reject(result);
           } else {
             return resolve(result);
@@ -142,5 +143,4 @@ export class GroupLayer extends ListenerLayer {
       }
     });
   }
-  
 }

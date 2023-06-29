@@ -2,13 +2,14 @@ import { GroupLayer } from './group.layer';
 import { Page, Browser } from 'puppeteer';
 import { CreateOptions, InterfaceHost, contact } from '../../model/interface';
 import { onMode } from '../../model/enum';
+import { CallbackOnStatus } from './callback-on.layes';
 
 export class RetrieverLayer extends GroupLayer {
   constructor(
     public page: Page,
     public browser: Browser,
     public options: CreateOptions,
-    public ev: any
+    public ev: CallbackOnStatus
   ) {
     super(page, browser, options, ev);
   }

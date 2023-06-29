@@ -6,7 +6,7 @@ import { onMod } from './on-wpp';
 
 export class scraping extends onMod {
   public startScanQrcode: boolean;
-  public autoCloseInterval: any;
+  public autoCloseInterval: NodeJS.Timer | undefined;
   public autoCloseRemain: number = 0;
 
   constructor(
@@ -14,7 +14,6 @@ export class scraping extends onMod {
     public browser: Browser,
     public options: CreateOptions,
     public ev: any
-
   ) {
     super(page, browser, options, ev);
     this.startScanQrcode = false;
@@ -27,18 +26,20 @@ export class scraping extends onMod {
       !this.autoCloseInterval &&
       !this.page.isClosed()
     ) {
-      this.page.close().catch(() => {});
-      this.browser.close().catch(() => {});
+      this.page.close().catch((err) => console.error(err));
+      this.browser.close().catch((err) => console.error(err));
     }
   }
 
   public cancelAutoClose() {
-    clearInterval(this.autoCloseInterval);
-    this.autoCloseInterval = null;
+    this.autoCloseInterval && clearInterval(this.autoCloseInterval);
+    this.autoCloseInterval = undefined;
   }
 
   protected startAutoClose() {
-    let remain: Number | Boolean | any = this.options.timeAutoClose ? this.options.timeAutoClose : false;
+    let remain: Number | Boolean = this.options.timeAutoClose
+      ? this.options.timeAutoClose
+      : false;
     if (
       this.options.timeAutoClose &&
       this.options.timeAutoClose > 0 &&
@@ -50,17 +51,18 @@ export class scraping extends onMod {
             this.cancelAutoClose();
             return;
           }
-          if (Number.isInteger(remain)) {
+
+          if (typeof remain === 'number') {
             remain -= 1000;
             this.autoCloseRemain = Math.round(remain / 1000);
             if (remain <= 0) {
               this.ev.statusFind = {
-                erro: false,
+                error: false,
                 text: 'Auto close called!',
                 status: 'autoClose',
                 statusFind: 'browser',
                 onType: onMode.connection,
-                session: this.options.session
+                session: this.options.session,
               };
               this.cancelAutoClose();
               this.tryAutoClose();

@@ -3,13 +3,14 @@ import { magix, makeOptions, puppeteerConfig, sleep } from '../../help';
 import axios from 'axios';
 import { Page, Browser } from 'puppeteer';
 import { CreateOptions } from '../../model/interface';
+import { CallbackOnStatus } from './callback-on.layes';
 
 export class Whatsapp extends scraping {
   constructor(
     public page: Page,
     public browser: Browser,
     public options: CreateOptions,
-    public ev: any
+    public ev: CallbackOnStatus
   ) {
     super(page, browser, options, ev);
   }

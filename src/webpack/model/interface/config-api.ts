@@ -5,7 +5,7 @@ export interface puppeteerOptions {
    * specify whether the browser is visible or invisible, invisible to true and visible to false
    * @default true
    */
-  headless?: boolean;
+  headless?: boolean | 'new';
   /**
    * when started, the project will automatically download Chromium if it can't find it
    * @default true
@@ -88,7 +88,7 @@ export const defaultConfig: CreateOptions = {
     ignoreHTTPSErrors: true,
     userDataDir: '',
     downloadChromium: true,
-    chromiumVersion: '818858'
+    chromiumVersion: '818858',
   },
   printQRInTerminal: true,
   timeAutoClose: 60000,

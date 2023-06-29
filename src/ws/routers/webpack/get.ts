@@ -36,7 +36,7 @@ export const getRouters = (
       const file: string = path.join(process.cwd(), 'files', getFile);
       if (!fs.existsSync(file)) {
         return res.send({
-          erro: true,
+          error: true,
           text: 'Not file',
         });
       }
@@ -47,13 +47,13 @@ export const getRouters = (
       readStream.on('error', function (err) {
         console.log(err);
         res.end({
-          erro: true,
+          error: true,
           text: 'Not file',
         });
       });
     } else {
       return res.send({
-        erro: true,
+        error: true,
         text: 'Not file',
       });
     }

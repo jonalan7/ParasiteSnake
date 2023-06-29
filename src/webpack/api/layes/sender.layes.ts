@@ -10,13 +10,14 @@ import {
   filenameFromMimeType,
 } from '../../help';
 import * as path from 'path';
+import { CallbackOnStatus } from './callback-on.layes';
 
 export class SenderLayer extends RetrieverLayer {
   constructor(
     public page: Page,
     public browser: Browser,
     public options: CreateOptions,
-    public ev: any
+    public ev: CallbackOnStatus
   ) {
     super(page, browser, options, ev);
   }
@@ -43,7 +44,7 @@ export class SenderLayer extends RetrieverLayer {
 
       if (!base64) {
         return reject({
-          erro: true,
+          error: true,
           to: to,
           text: 'No such file or directory, open "' + filePath + '"',
         });
@@ -57,7 +58,7 @@ export class SenderLayer extends RetrieverLayer {
 
       if (!mimeType) {
         return reject({
-          erro: true,
+          error: true,
           to: to,
           text: 'Invalid base64!',
         });
@@ -65,7 +66,7 @@ export class SenderLayer extends RetrieverLayer {
 
       if (!mimeType.includes('image')) {
         return reject({
-          erro: true,
+          error: true,
           to: to,
           text: 'Not an image, allowed formats gif, png, jpg, jpeg and webp',
         });
@@ -81,7 +82,7 @@ export class SenderLayer extends RetrieverLayer {
           { to, base64, options }
         )
         .catch();
-      if (result.erro == true) {
+      if (result.error == true) {
         return reject(result);
       } else {
         return resolve(result);
@@ -105,7 +106,7 @@ export class SenderLayer extends RetrieverLayer {
       let mimeType = base64MimeType(base64);
       if (!mimeType) {
         return reject({
-          erro: true,
+          error: true,
           to: to,
           text: 'Invalid base64!',
         });
@@ -113,7 +114,7 @@ export class SenderLayer extends RetrieverLayer {
 
       if (!mimeType.includes('image')) {
         return reject({
-          erro: true,
+          error: true,
           to: to,
           text: 'Not an image, allowed formats gif, png, jpg, jpeg and webp',
         });
@@ -128,7 +129,7 @@ export class SenderLayer extends RetrieverLayer {
         )
         .catch();
 
-      if (result.erro == true) {
+      if (result.error == true) {
         return reject(result);
       } else {
         return resolve(result);
@@ -152,7 +153,7 @@ export class SenderLayer extends RetrieverLayer {
 
       if (!base64) {
         return reject({
-          erro: true,
+          error: true,
           to: to,
           text: 'No such file or directory, open "' + filePath + '"',
         });
@@ -166,7 +167,7 @@ export class SenderLayer extends RetrieverLayer {
 
       if (!mimeType) {
         return reject({
-          erro: true,
+          error: true,
           to: to,
           text: 'Invalid base64!',
         });
@@ -182,7 +183,7 @@ export class SenderLayer extends RetrieverLayer {
           { to, base64, options }
         )
         .catch();
-      if (result.erro == true) {
+      if (result.error == true) {
         return reject(result);
       } else {
         return resolve(result);
@@ -207,7 +208,7 @@ export class SenderLayer extends RetrieverLayer {
           { to, body, options }
         )
         .catch();
-      if (result.erro == true) {
+      if (result.error == true) {
         return reject(result);
       } else {
         return resolve(result);
@@ -228,7 +229,7 @@ export class SenderLayer extends RetrieverLayer {
 
       if (!mimeType) {
         return reject({
-          erro: true,
+          error: true,
           to: to,
           text: 'Invalid base64!',
         });
@@ -243,14 +244,14 @@ export class SenderLayer extends RetrieverLayer {
             { to, base64, options }
           )
           .catch();
-        if (result.erro == true) {
+        if (result.error == true) {
           return reject(result);
         } else {
           return resolve(result);
         }
       } else {
         return reject({
-          erro: true,
+          error: true,
           to: to,
           text: 'Use the MP3 format to be able to send an audio!',
         });
@@ -277,7 +278,7 @@ export class SenderLayer extends RetrieverLayer {
 
       if (!base64) {
         return reject({
-          erro: true,
+          error: true,
           to: to,
           text: 'No such file or directory, open "' + filePath + '"',
         });
@@ -294,14 +295,14 @@ export class SenderLayer extends RetrieverLayer {
             { to, base64, options }
           )
           .catch();
-        if (result.erro == true) {
+        if (result.error == true) {
           return reject(result);
         } else {
           return resolve(result);
         }
       } else {
         return reject({
-          erro: true,
+          error: true,
           to: to,
           text: 'Use the MP3 format to be able to send an audio!',
         });
@@ -323,7 +324,7 @@ export class SenderLayer extends RetrieverLayer {
 
       if (!Object.values(FunctionType).includes(options.type)) {
         return reject({
-          erro: true,
+          error: true,
           text: `pass the message type, examples: ${Object.values(
             FunctionType
           ).join(', ')}`,

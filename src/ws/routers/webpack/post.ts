@@ -11,7 +11,7 @@ const postRouters = (router: Express, option: CreateOptions | options) => {
   });
 
   // Check user
-  router.post('/check_user', async (req, res) => {
+  router.post('/check_user', async (req: Request, res: Response) => {
     await InicializeRouters.checkUser(req, res);
   });
 
@@ -44,8 +44,6 @@ const postRouters = (router: Express, option: CreateOptions | options) => {
   router.post('/webhooktest', async (req: Request, res: Response) => {
     console.log('Webhooktest Return object ', req.body);
   });
-
-
 };
 
 export { postRouters };

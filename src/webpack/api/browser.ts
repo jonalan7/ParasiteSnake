@@ -9,8 +9,8 @@ import { puppeteerConfig } from '../help';
 
 const StealthPlugin = require('puppeteer-extra-plugin-stealth');
 
-export async function initBrowser(Browser: Browser): Promise<Page | boolean> {
-  const wpage: Page = await oneTab(Browser);
+export async function initBrowser(Browser: Browser) {
+  const wpage = await oneTab(Browser);
   if (wpage) {
     try {
       await wpage.setUserAgent(puppeteerConfig.useragentOverride);
@@ -100,7 +100,7 @@ export async function initLaunch(
     let init = true;
 
     ev.statusFind = {
-      erro: false,
+      error: false,
       text: 'Await download Chromium',
       status: 'chromium',
       statusFind: 'browser',
@@ -111,10 +111,10 @@ export async function initLaunch(
     await browserFetcher
       .download(
         options.puppeteerOptions?.chromiumVersion,
-        (downloadedByte, totalBytes) => {
+        (downloadedByte: any, totalBytes: any) => {
           if (init) {
             ev.statusFind = {
-              erro: false,
+              error: false,
               text: 'Checking the total bytes to download!',
               status: 'chromium',
               statusFind: 'browser',
@@ -124,7 +124,7 @@ export async function initLaunch(
 
             if (totalBytes) {
               ev.statusFind = {
-                erro: false,
+                error: false,
                 text: `Total Bytes ${totalBytes}`,
                 status: 'chromium',
                 statusFind: 'browser',
@@ -137,7 +137,7 @@ export async function initLaunch(
 
           if (downloadedByte) {
             ev.statusFind = {
-              erro: false,
+              error: false,
               text: `Total Bytes: ${totalBytes} download: ${downloadedByte}`,
               status: 'chromium',
               statusFind: 'browser',
@@ -148,7 +148,7 @@ export async function initLaunch(
 
           if (downloadedByte === totalBytes) {
             ev.statusFind = {
-              erro: false,
+              error: false,
               text: `Extract files... await...`,
               status: 'chromium',
               statusFind: 'browser',
@@ -158,12 +158,12 @@ export async function initLaunch(
           }
         }
       )
-      .then((revisionInfo) => {
+      .then((revisionInfo: { executablePath: string | undefined }) => {
         if (options.puppeteerOptions?.executablePath) {
           options.puppeteerOptions.executablePath =
             revisionInfo?.executablePath;
           ev.statusFind = {
-            erro: false,
+            error: false,
             text: `download completed, path: ${revisionInfo?.executablePath}`,
             status: 'chromium',
             statusFind: 'browser',
@@ -176,9 +176,9 @@ export async function initLaunch(
           options.puppeteerOptions.args.push(`--single-process`);
         }
       })
-      .catch((e) => {
+      .catch((e: any) => {
         ev.statusFind = {
-          erro: true,
+          error: true,
           text: `Error chromium`,
           status: 'chromium',
           statusFind: 'browser',
@@ -193,11 +193,17 @@ export async function initLaunch(
     return false;
   }
 
+  const puppeteerOptionsArgs = options.puppeteerOptions.args;
+
   try {
     puppeteer.use(StealthPlugin());
     return await puppeteer.launch({
       headless: options.puppeteerOptions?.headless,
-      args: options.puppeteerOptions?.args,
+      args: puppeteerOptionsArgs
+        ? puppeteerOptionsArgs?.length > 0
+          ? options.puppeteerOptions.args
+          : puppeteerConfig.chromiumArgs
+        : puppeteerConfig.chromiumArgs,
       executablePath: options.puppeteerOptions?.executablePath,
       userDataDir: options.puppeteerOptions?.userDataDir,
     });
@@ -206,9 +212,7 @@ export async function initLaunch(
   }
 }
 
-export async function oneTab(
-  Browser: Browser | BrowserContext
-): Promise<Page | any> {
+export async function oneTab(Browser: Browser | BrowserContext) {
   try {
     const page: Page[] = await Browser.pages();
     if (page.length) return page[0];
@@ -218,7 +222,7 @@ export async function oneTab(
   }
 }
 
-export function getPathChrome(): string | undefined {
+export function getPathChrome() {
   try {
     const chromeInstalations: string[] =
       ChromeLauncher.Launcher.getInstallations();

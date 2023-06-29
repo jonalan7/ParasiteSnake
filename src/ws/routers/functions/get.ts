@@ -12,7 +12,7 @@ export class InicializeGet {
 
     if (option.authentication) {
       const user = await Users.CheckUserLogin(req);
-      if (user.erro) {
+      if (user.error) {
         return res.send(user);
       }
     }
@@ -37,14 +37,14 @@ export class InicializeGet {
           });
         } else {
           return res.send({
-            erro: true,
+            error: true,
             text: 'Waiting for connection with whatsapp',
           });
         }
       }
     } else {
       return res.send({
-        erro: true,
+        error: true,
         text: 'Not connected',
       });
     }
@@ -56,7 +56,7 @@ export class InicializeGet {
     if (!!$_GET.name && $_GET.name.length) {
       if (option.authentication) {
         const user = await Users.CheckUserLogin(req);
-        if (user.erro) {
+        if (user.error) {
           return res.send(user);
         }
       }
@@ -72,26 +72,26 @@ export class InicializeGet {
           if (client && InicializeRouters.inicialize) {
             try {
               return res.status(200).send({
-                erro: false,
+                error: false,
                 connect: true,
               });
             } catch {}
           } else {
             return res.send({
-              erro: true,
+              error: true,
               connect: false,
             });
           }
         }
       } else {
         return res.send({
-          erro: true,
+          error: true,
           text: 'Not connected',
         });
       }
     } else {
       return res.send({
-        erro: true,
+        error: true,
         text: 'The parameters are missing',
       });
     }
@@ -102,7 +102,7 @@ export class InicializeGet {
 
     if (option.authentication) {
       const user = await Users.CheckUserLogin(req);
-      if (user.erro) {
+      if (user.error) {
         return res.send(user);
       }
     }
@@ -117,19 +117,19 @@ export class InicializeGet {
         );
         if (imgBase64) {
           res.send({
-            erro: false,
+            error: false,
             base64Image: sessionClient.session[getId].base64Image,
           });
         } else {
           res.send({
-            erro: true,
+            error: true,
             base64Image: '',
           });
         }
       }
     } else {
       return res.send({
-        erro: true,
+        error: true,
         text: 'Not connected',
       });
     }
@@ -140,7 +140,7 @@ export class InicializeGet {
 
     if (option.authentication) {
       const user = await Users.CheckUserLogin(req);
-      if (user.erro) {
+      if (user.error) {
         return res.send(user);
       }
     }
@@ -165,14 +165,14 @@ export class InicializeGet {
           });
         } else {
           return res.send({
-            erro: true,
+            error: true,
             text: 'Waiting for connection with whatsapp',
           });
         }
       }
     } else {
       return res.send({
-        erro: true,
+        error: true,
         text: 'Not connected',
       });
     }

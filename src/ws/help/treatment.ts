@@ -17,14 +17,14 @@ class configUsers {
       !!$_HEADERS.user_pass &&
       $_HEADERS.user_pass.length
     ) {
-      return { erro: false };
+      return { error: false };
     }
-    return { erro: true, text: 'Not informed the user headers' };
+    return { error: true, text: 'Not informed the user headers' };
   }
 
   async CheckUserLogin(req: any) {
     const checkHeaders = this.CheckUserHeaders(req);
-    if (checkHeaders.erro === false) {
+    if (checkHeaders.error === false) {
       const $_HEADERS = req.headers;
       const checkUser = await this.dbUser.checkUser(
         $_HEADERS.user,
@@ -36,11 +36,11 @@ class configUsers {
       );
       if (checkUser) {
         if (checkStatus === false) {
-          return { erro: true, text: 'User status disabled' };
+          return { error: true, text: 'User status disabled' };
         }
-        return { erro: false };
+        return { error: false };
       }
-      return { erro: true, text: 'User not found' };
+      return { error: true, text: 'User not found' };
     }
     return checkHeaders;
   }
@@ -54,14 +54,14 @@ class configUsers {
       !!$_HEADERS.admin_pass &&
       $_HEADERS.admin_pass.length
     ) {
-      return { erro: false };
+      return { error: false };
     }
-    return { erro: true, text: 'Not informed the admin headers' };
+    return { error: true, text: 'Not informed the admin headers' };
   }
 
   async CheckAdminLogin(req: any) {
     const checkHeaders = this.CheckAdminHeaders(req);
-    if (checkHeaders.erro === false) {
+    if (checkHeaders.error === false) {
       const $_HEADERS = req.headers;
       const checkAdmin = await this.dbAdmin.checkUser(
         $_HEADERS.admin,
@@ -73,11 +73,11 @@ class configUsers {
       );
       if (checkAdmin) {
         if (checkStatus === false) {
-          return { erro: true, text: 'Admin status disabled' };
+          return { error: true, text: 'Admin status disabled' };
         }
-        return { erro: false };
+        return { error: false };
       }
-      return { erro: true, text: 'Admin not found' };
+      return { error: true, text: 'Admin not found' };
     }
     return checkHeaders;
   }

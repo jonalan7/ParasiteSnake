@@ -1,6 +1,6 @@
 {
   "name": "hydra-bot",
-  "version": "1.0.30",
+  "version": "1.0.31-10",
   "description": "The most reliable WhatsApp tool for chatbots with advanced features. Hydra bot is an open source project developed by the JavaScript community with the aim of exporting functions from WhatsApp Web to the node js, . The most complete javascript library for Whatsapp, 100% Open Source.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -71,9 +71,9 @@
     "knex": "^2.1.0",
     "latest-version": "^5.1.0",
     "mime-types": "^2.1.35",
-    "puppeteer": "^14.2.1",
-    "puppeteer-extra": "^3.2.3",
-    "puppeteer-extra-plugin-stealth": "^2.9.0",
+    "puppeteer": "^20.7.2",
+    "puppeteer-extra": "^3.3.6",
+    "puppeteer-extra-plugin-stealth": "^2.11.2",
     "qrcode-terminal": "^0.12.0",
     "sharp": "^0.30.7",
     "sqlite3": "^5.0.8",
@@ -106,8 +106,5 @@
   },
   "directories": {
     "doc": "docs"
-  },
-  "peerDependencies": {
-    "typescript": ">= 4.0.x"
   }
 }

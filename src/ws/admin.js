@@ -107,7 +107,7 @@ class infoAdmin extends sqlite {
             rl.prompt();
             rl.clearLine();
           } else {
-            rl.setPrompt(`Error: ${passChange.erro} \n`);
+            rl.setPrompt(`Error: ${passChange.error} \n`);
             rl.prompt();
             rl.clearLine();
           }
@@ -133,7 +133,7 @@ class infoAdmin extends sqlite {
             rl.prompt();
             rl.clearLine();
           } else {
-            rl.setPrompt(`Error: ${nameChange.erro} \n`);
+            rl.setPrompt(`Error: ${nameChange.error} \n`);
             rl.prompt();
             rl.clearLine();
           }
@@ -159,7 +159,7 @@ class infoAdmin extends sqlite {
             rl.prompt();
             rl.clearLine();
           } else {
-            rl.setPrompt(`Error: ${nameChange.erro} \n`);
+            rl.setPrompt(`Error: ${nameChange.error} \n`);
             rl.prompt();
             rl.clearLine();
           }
@@ -184,7 +184,7 @@ class infoAdmin extends sqlite {
           rl.prompt();
           rl.clearLine();
         } else {
-          rl.setPrompt(`Error: ${userDel.erro} \n`);
+          rl.setPrompt(`Error: ${userDel.error} \n`);
           rl.prompt();
           rl.clearLine();
         }
@@ -209,7 +209,7 @@ class infoAdmin extends sqlite {
           rl.prompt();
           rl.clearLine();
         } else {
-          rl.setPrompt(`Error: ${userAtive.erro} \n`);
+          rl.setPrompt(`Error: ${userAtive.error} \n`);
           rl.prompt();
           rl.clearLine();
         }
@@ -228,7 +228,7 @@ class infoAdmin extends sqlite {
           rl.prompt();
           rl.clearLine();
         } else {
-          rl.setPrompt(`Error: ${userDesative.erro} \n`);
+          rl.setPrompt(`Error: ${userDesative.error} \n`);
           rl.prompt();
           rl.clearLine();
         }
@@ -247,7 +247,7 @@ class infoAdmin extends sqlite {
           rl.prompt();
           rl.clearLine();
         } else {
-          rl.setPrompt(`Error: ${del.erro} \n`);
+          rl.setPrompt(`Error: ${del.error} \n`);
           rl.prompt();
           rl.clearLine();
         }
@@ -267,7 +267,7 @@ class infoAdmin extends sqlite {
           rl.prompt();
           rl.clearLine();
         } else {
-          rl.setPrompt(`Error: ${create.erro} \n`);
+          rl.setPrompt(`Error: ${create.error} \n`);
           rl.prompt();
           rl.clearLine();
         }

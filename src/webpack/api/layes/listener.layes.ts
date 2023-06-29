@@ -4,6 +4,7 @@ import { Page, Browser } from 'puppeteer';
 import { Whatsapp } from './whatsapp';
 import { CreateOptions } from '../../model/interface';
 import { sleep } from '../../help';
+import { CallbackOnStatus } from './callback-on.layes';
 
 export class ListenerLayer extends Whatsapp {
   urlCode = '';
@@ -11,7 +12,7 @@ export class ListenerLayer extends Whatsapp {
     public page: Page,
     public browser: Browser,
     public options: CreateOptions,
-    public ev: any
+    public ev: CallbackOnStatus
   ) {
     super(page, browser, options, ev);
   }
@@ -29,7 +30,7 @@ export class ListenerLayer extends Whatsapp {
       if (this.urlCode !== result.urlCode) {
         this.urlCode = result.urlCode;
         this.ev.statusFind = {
-          erro: false,
+          error: false,
           qrcode: result.urlCode,
           base64Image: result.base64Image,
           onType: onMode.qrcode,
@@ -51,7 +52,7 @@ export class ListenerLayer extends Whatsapp {
 
     for (const func of functions) {
       const has = await this.page
-        .evaluate((func) => typeof window[func] === 'function', func)
+        .evaluate((func: any) => typeof window[func] === 'function', func)
         .catch(() => false);
 
       if (!has) {
@@ -59,17 +60,17 @@ export class ListenerLayer extends Whatsapp {
           .exposeFunction(func, (...args: any) =>
             this.listenerEmitter.emit(func, ...args)
           )
-          .catch(() => { });
+          .catch(() => {});
       }
     }
-    
+
     this.listener(onMode.interfaceChange);
     this.listener(onMode.newMessage);
     this.listener(onMode.newOnAck);
-    
+
     this.interfaceChange();
     this.newMessage();
-    this.newOnAck()
+    this.newOnAck();
   }
 
   private listener(type: string): { dispose: () => void } {

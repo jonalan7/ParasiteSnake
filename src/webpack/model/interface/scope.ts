@@ -1,6 +1,6 @@
 export interface InterfaceScope {
   to: to | string;
-  erro: boolean;
+  error: boolean;
   text: string;
   status: string | id;
   type: string;

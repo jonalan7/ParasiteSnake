@@ -7,19 +7,16 @@ import { onMode } from '../model/enum';
 import { checkingCloses, sleep } from '../help';
 import { checkUpdates } from './check-up-to-date';
 
-const ev = new CallbackOnStatus();
-
-export async function initServer(
-  createOption?: CreateOptions
-): Promise<webPack | any>;
+// export async function initServer(
+//   createOption?: CreateOptions
+// ): Promise<webPack>;
 
 /**
  * Start the bot
  */
-export async function initServer(
-  options?: CreateOptions
-): Promise<webPack | any> {
-  return new Promise(async (resolve) => {
+export async function initServer(options?: CreateOptions) {
+  const ev = new CallbackOnStatus();
+  return new Promise<CallbackOnStatus>(async (resolve) => {
     resolve(ev);
 
     const mergeOptionsDefault = { ...defaultConfig, ...options };
@@ -46,7 +43,7 @@ export async function initServer(
     }
 
     ev.statusFind = {
-      erro: false,
+      error: false,
       text: 'Starting browser...',
       status: 'initBrowser',
       statusFind: 'browser',
@@ -54,11 +51,11 @@ export async function initServer(
       session: mergeOptionsDefault.session,
     };
 
-    const wpage: Browser | boolean | any = await initLaunch(mergeOptionsDefault, ev);
+    const wpage = await initLaunch(mergeOptionsDefault, ev);
 
     if (typeof wpage !== 'boolean') {
       ev.statusFind = {
-        erro: false,
+        error: false,
         text: 'Opening whatsapp page!',
         status: 'initWhatsapp',
         statusFind: 'browser',
@@ -66,10 +63,10 @@ export async function initServer(
         session: mergeOptionsDefault.session,
       };
 
-      const page: boolean | Page = await initBrowser(wpage);
+      const page = await initBrowser(wpage);
       if (typeof page !== 'boolean') {
         ev.statusFind = {
-          erro: false,
+          error: false,
           page: page,
           statusFind: 'page',
           onType: onMode.connection,
@@ -79,7 +76,7 @@ export async function initServer(
         await sleep(100);
 
         ev.statusFind = {
-          erro: false,
+          error: false,
           text: 'Website accessed successfully',
           status: 'openedWhatsapp',
           statusFind: 'browser',
@@ -90,15 +87,13 @@ export async function initServer(
         const client = new webPack(page, wpage, mergeOptionsDefault, ev);
         checkingCloses(wpage, () => {
           ev.statusFind = {
-            erro: true,
+            error: true,
             text: 'The browser has closed',
             status: 'browserClosed',
             statusFind: 'browser',
             onType: onMode.connection,
             session: mergeOptionsDefault.session,
           };
-        }).catch(() => {
-          console.log('The client has been closed');
         });
 
         ev.on(onMode.interfaceChange, async (interFace: any) => {
@@ -110,7 +105,7 @@ export async function initServer(
             ) {
               client.addChatWapi();
               ev.statusFind = {
-                erro: false,
+                error: false,
                 connect: true,
                 onType: onMode.connection,
                 session: mergeOptionsDefault.session,
@@ -122,7 +117,7 @@ export async function initServer(
               interFace.result.info === 'NORMAL'
             ) {
               ev.statusFind = {
-                erro: false,
+                error: false,
                 qrcode: interFace.result.info,
                 onType: onMode.connection,
                 session: mergeOptionsDefault.session,
@@ -133,9 +128,9 @@ export async function initServer(
         });
       } else {
         ev.statusFind = {
-          erro: true,
-          text: 'Error open whatzapp',
-          status: 'noOpenWhatzapp',
+          error: true,
+          text: 'Error open whatsapp',
+          status: 'noOpenWhatsapp',
           statusFind: 'browser',
           onType: onMode.connection,
           session: mergeOptionsDefault.session,
@@ -144,7 +139,7 @@ export async function initServer(
       }
     } else {
       ev.statusFind = {
-        erro: true,
+        error: true,
         text: 'Error open browser...',
         status: 'noOpenBrowser',
         statusFind: 'browser',

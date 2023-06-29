@@ -7,6 +7,7 @@ hooks:
   after:bump:
     - 'npm run build'
     - 'npm run changelog:update'
+    - 'npm pack'
 
 # automatic publish from github workflow
 npm:

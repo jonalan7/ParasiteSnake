@@ -1,4 +1,9 @@
-import { InterfaceHost, contact, InterfaceScope, checkNumber } from '../model/interface';
+import {
+  InterfaceHost,
+  contact,
+  InterfaceScope,
+  checkNumber,
+} from '../model/interface';
 
 interface API {
   /**
@@ -51,7 +56,7 @@ interface API {
    * @param {string} groupId group number
    * @param {string} path of image
    */
-  setGroupImage: (path: string, to: string) => Promise<InterfaceScope>;
+  setGroupImage: (path: string | Object, to: string) => Promise<InterfaceScope>;
   /**
    * check if the number exists
    * @param {string} number phone number
