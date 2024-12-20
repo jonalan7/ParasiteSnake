@@ -1,0 +1,234 @@
+<!doctype html>
+<html class="default no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Start Bot | hydra-bot - v1.0.35</title>
+	<meta name="description" content="Documentation for hydra-bot - v1.0.35">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="../../assets/css/main.css">
+	<link rel="stylesheet" href="../../assets/css/pages.css">
+	<script async src="../../assets/js/search.js" id="search-script"></script>
+</head>
+<body>
+<header>
+	<div class="tsd-page-toolbar">
+		<div class="container">
+			<div class="table-wrap">
+				<div class="table-cell" id="tsd-search" data-index="../../assets/js/search.json" data-base="../..">
+					<div class="field">
+						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
+						<input id="tsd-search-field" type="text" />
+					</div>
+					<ul class="results">
+						<li class="state loading">Preparing search index...</li>
+						<li class="state failure">The search index is not available</li>
+					</ul>
+					<a href="../../index.html" class="title">hydra-bot - v1.0.35</a>
+				</div>
+				<div class="table-cell" id="tsd-widgets">
+					<div id="tsd-filter">
+						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
+						<div class="tsd-filter-group">
+							<div class="tsd-select" id="tsd-filter-visibility">
+								<span class="tsd-select-label">All</span>
+								<ul class="tsd-select-list">
+									<li data-value="public">Public</li>
+									<li data-value="protected">Public/Protected</li>
+									<li data-value="private" class="selected">All</li>
+								</ul>
+							</div>
+							<input type="checkbox" id="tsd-filter-inherited" checked />
+							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+							<input type="checkbox" id="tsd-filter-externals" checked />
+							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
+						</div>
+					</div>
+					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="tsd-page-title">
+		<div class="container">
+			<ul class="tsd-breadcrumb">
+				<li>
+					<a href="../../modules.html">hydra-bot - v1.0.35</a>
+				</li>
+				<li>
+					<a href="installation.html">Getting Started</a>
+				</li>
+				<li>
+					<a href="start_bot.html">Start Bot</a>
+				</li>
+			</ul>
+			<h1>Start Bot</h1>
+		</div>
+	</div>
+</header>
+<div class="container container-main">
+	<div class="row">
+		<div class="col-8 col-content">
+			<div class="tsd-panel tsd-typography">
+				<a href="#getting-started-bot-the-bot-in-raw-form-without-using-a-web-services" id="getting-started-bot-the-bot-in-raw-form-without-using-a-web-services" style="color: inherit; text-decoration: none;">
+					<h2>Getting started bot (the bot in raw form, without using a Web Services).</h2>
+				</a>
+				<p>If you want to work in free mode, using only the bot, dry the necessary information!</p>
+				<pre><code class="language-javascript">
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">hydraBot</span><span style="color: #000000"> = </span><span style="color: #795E26">require</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;hydra-bot&#039;</span><span style="color: #000000">);</span>
+
+<span style="color: #000000">(</span><span style="color: #0000FF">async</span><span style="color: #000000"> () </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">    </span><span style="color: #0000FF">let</span><span style="color: #000000"> </span><span style="color: #001080">client</span><span style="color: #000000">;</span>
+<span style="color: #000000">    </span><span style="color: #0000FF">let</span><span style="color: #000000"> </span><span style="color: #001080">checkConnect</span><span style="color: #000000"> = </span><span style="color: #0000FF">false</span><span style="color: #000000">;</span>
+<span style="color: #000000">    </span><span style="color: #008000">// start bot service</span>
+<span style="color: #000000">    </span><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">ev</span><span style="color: #000000"> = </span><span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #001080">hydraBot</span><span style="color: #000000">.</span><span style="color: #795E26">initServer</span><span style="color: #000000">();</span>
+
+<span style="color: #000000">    </span><span style="color: #008000">// return to current whatsapp interface</span>
+<span style="color: #000000">    </span><span style="color: #001080">ev</span><span style="color: #000000">.</span><span style="color: #795E26">on</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;interfaceChange&#039;</span><span style="color: #000000">, (</span><span style="color: #001080">change</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">        </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;interfaceChange: &quot;</span><span style="color: #000000">, </span><span style="color: #001080">change</span><span style="color: #000000">);</span>
+<span style="color: #000000">    });</span>
+
+<span style="color: #000000">    </span><span style="color: #008000">// return qrcode parameters</span>
+<span style="color: #000000">    </span><span style="color: #001080">ev</span><span style="color: #000000">.</span><span style="color: #795E26">on</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;qrcode&#039;</span><span style="color: #000000">, (</span><span style="color: #001080">qrcode</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">        </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;qrcode: &#039;</span><span style="color: #000000">, </span><span style="color: #001080">qrcode</span><span style="color: #000000">);</span>
+<span style="color: #000000">    });</span>
+
+<span style="color: #000000">    </span><span style="color: #008000">// return connection information</span>
+<span style="color: #000000">    </span><span style="color: #001080">ev</span><span style="color: #000000">.</span><span style="color: #795E26">on</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;connection&#039;</span><span style="color: #000000">, </span><span style="color: #0000FF">async</span><span style="color: #000000"> (</span><span style="color: #001080">conn</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+
+<span style="color: #000000">        </span><span style="color: #008000">// browser information!</span>
+<span style="color: #000000">        </span><span style="color: #AF00DB">if</span><span style="color: #000000"> (</span><span style="color: #001080">conn</span><span style="color: #000000">.</span><span style="color: #001080">statusFind</span><span style="color: #000000"> === </span><span style="color: #A31515">&#039;browser&#039;</span><span style="color: #000000">) {</span>
+<span style="color: #000000">            </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;info Browser: &#039;</span><span style="color: #000000">, </span><span style="color: #001080">conn</span><span style="color: #000000">.</span><span style="color: #001080">text</span><span style="color: #000000">);</span>
+<span style="color: #000000">        }</span>
+
+<span style="color: #000000">        </span><span style="color: #008000">// Was connected to whatsapp chat</span>
+<span style="color: #000000">        </span><span style="color: #AF00DB">if</span><span style="color: #000000"> (</span><span style="color: #001080">conn</span><span style="color: #000000">.</span><span style="color: #001080">connect</span><span style="color: #000000"> &amp;&amp; !</span><span style="color: #001080">checkConnect</span><span style="color: #000000">) {</span>
+<span style="color: #000000">            </span><span style="color: #001080">checkConnect</span><span style="color: #000000"> = </span><span style="color: #0000FF">true</span><span style="color: #000000">;</span>
+<span style="color: #000000">            </span><span style="color: #001080">client</span><span style="color: #000000"> = </span><span style="color: #001080">conn</span><span style="color: #000000">.</span><span style="color: #001080">client</span><span style="color: #000000">; </span><span style="color: #008000">// class client from hydra-bot</span>
+<span style="color: #000000">            </span><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">getMe</span><span style="color: #000000"> = </span><span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #001080">client</span><span style="color: #000000">.</span><span style="color: #795E26">getHost</span><span style="color: #000000">();</span>
+<span style="color: #000000">            </span><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">hostNumber</span><span style="color: #000000"> = </span><span style="color: #001080">getMe</span><span style="color: #000000">.</span><span style="color: #001080">id</span><span style="color: #000000">.</span><span style="color: #001080">_serialized</span><span style="color: #000000">; </span><span style="color: #008000">// number host</span>
+<span style="color: #000000">            </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;Host Number: &#039;</span><span style="color: #000000">, </span><span style="color: #001080">hostNumber</span><span style="color: #000000">);</span>
+<span style="color: #000000">            </span><span style="color: #008000">// send a text message</span>
+<span style="color: #000000">            </span><span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #001080">client</span><span style="color: #000000">.</span><span style="color: #795E26">sendMessage</span><span style="color: #000000">({</span>
+<span style="color: #000000">                </span><span style="color: #001080">to:</span><span style="color: #000000"> </span><span style="color: #001080">hostNumber</span><span style="color: #000000">, </span><span style="color: #008000">// you can pass the contact number or group number</span>
+<span style="color: #000000">                </span><span style="color: #001080">body:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;hi i&#039;m hydra bot&quot;</span><span style="color: #000000">, </span><span style="color: #008000">// message text</span>
+<span style="color: #000000">                </span><span style="color: #001080">options:</span><span style="color: #000000"> {</span>
+<span style="color: #000000">                    </span><span style="color: #001080">type:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;sendText&#039;</span><span style="color: #000000">, </span><span style="color: #008000">// shipping type</span>
+<span style="color: #000000">                }</span>
+<span style="color: #000000">            }).</span><span style="color: #795E26">then</span><span style="color: #000000">((</span><span style="color: #001080">result</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">                </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">result</span><span style="color: #000000">); </span><span style="color: #008000">// message result</span>
+<span style="color: #000000">            }).</span><span style="color: #795E26">catch</span><span style="color: #000000">((</span><span style="color: #001080">error</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">                </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">error</span><span style="color: #000000">); </span><span style="color: #008000">// message error</span>
+<span style="color: #000000">            });</span>
+
+<span style="color: #000000">        }</span>
+<span style="color: #000000">    });</span>
+
+<span style="color: #000000">    </span><span style="color: #001080">ev</span><span style="color: #000000">.</span><span style="color: #795E26">on</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;newMessage&#039;</span><span style="color: #000000">, </span><span style="color: #0000FF">async</span><span style="color: #000000"> (</span><span style="color: #001080">newMsg</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">        </span><span style="color: #008000">// when is received</span>
+<span style="color: #000000">        </span><span style="color: #AF00DB">if</span><span style="color: #000000"> (!</span><span style="color: #001080">newMsg</span><span style="color: #000000">.</span><span style="color: #001080">result</span><span style="color: #000000">.</span><span style="color: #001080">fromMe</span><span style="color: #000000">) {</span>
+<span style="color: #000000">            </span><span style="color: #008000">// message received!</span>
+<span style="color: #000000">            </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;NewMessageReceived: &#039;</span><span style="color: #000000">, </span><span style="color: #001080">newMsg</span><span style="color: #000000">.</span><span style="color: #001080">result</span><span style="color: #000000">);</span>
+<span style="color: #000000">        }</span>
+<span style="color: #000000">        </span><span style="color: #008000">// when is it sent</span>
+<span style="color: #000000">        </span><span style="color: #AF00DB">if</span><span style="color: #000000"> (!!</span><span style="color: #001080">newMsg</span><span style="color: #000000">.</span><span style="color: #001080">result</span><span style="color: #000000">.</span><span style="color: #001080">fromMe</span><span style="color: #000000">) {</span>
+<span style="color: #000000">            </span><span style="color: #008000">// Message sent</span>
+<span style="color: #000000">            </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;NewMessageSent: &#039;</span><span style="color: #000000">, </span><span style="color: #001080">newMsg</span><span style="color: #000000">.</span><span style="color: #001080">result</span><span style="color: #000000">);</span>
+<span style="color: #000000">        }</span>
+<span style="color: #000000">    });</span>
+
+<span style="color: #000000">    </span><span style="color: #008000">// returns the status of each message</span>
+<span style="color: #000000">    </span><span style="color: #001080">ev</span><span style="color: #000000">.</span><span style="color: #795E26">on</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;newOnAck&#039;</span><span style="color: #000000">, </span><span style="color: #0000FF">async</span><span style="color: #000000"> (</span><span style="color: #001080">event</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">        </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;id Message: &#039;</span><span style="color: #000000">, </span><span style="color: #001080">event</span><span style="color: #000000">.</span><span style="color: #001080">result</span><span style="color: #000000">.</span><span style="color: #001080">id</span><span style="color: #000000">.</span><span style="color: #001080">_serialized</span><span style="color: #000000">); </span><span style="color: #008000">// message id  </span>
+<span style="color: #000000">        </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;Status Message: &#039;</span><span style="color: #000000">, </span><span style="color: #001080">event</span><span style="color: #000000">.</span><span style="color: #001080">result</span><span style="color: #000000">.</span><span style="color: #001080">ack</span><span style="color: #000000">); </span><span style="color: #008000">// -7 = MD_DOWNGRADE, -6 = INACTIVE, -5 = CONTENT_UNUPLOADABLE, -4 = CONTENT_TOO_BIG, -3 = CONTENT_GONE, -2 = EXPIRED, -1 = FAILED, 0 = CLOCK, 1 = SENT, 2 = RECEIVED, 3 = READ, 4 = PLAYED</span>
+<span style="color: #000000">        </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;From Message: &#039;</span><span style="color: #000000">, </span><span style="color: #001080">event</span><span style="color: #000000">.</span><span style="color: #001080">result</span><span style="color: #000000">.</span><span style="color: #001080">from</span><span style="color: #000000">); </span><span style="color: #008000">// from message</span>
+<span style="color: #000000">        </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;To Message: &#039;</span><span style="color: #000000">, </span><span style="color: #001080">event</span><span style="color: #000000">.</span><span style="color: #001080">result</span><span style="color: #000000">.</span><span style="color: #001080">to</span><span style="color: #000000">); </span><span style="color: #008000">// to message</span>
+<span style="color: #000000">    });</span>
+
+<span style="color: #000000">})();</span>
+</code></pre>
+			</div>
+		</div>
+		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+			<nav class="tsd-navigation primary">
+				<ul>
+					<li class="label pp-nav pp-group">
+						<span>Getting <wbr>Started</span>
+					</li>
+					<li class=" pp-nav pp-page">
+						<a href="installation.html">Installation</a>
+					</li>
+					<li class=" pp-nav pp-page pp-parent">
+						<a href="web_service.html">Web service</a>
+					</li>
+					<li class="current pp-nav pp-page">
+						<a href="start_bot.html">Start <wbr>Bot</a>
+					</li>
+					<li class="label pp-nav pp-group">
+						<span>How <wbr>To</span>
+					</li>
+					<li class=" pp-nav pp-page">
+						<a href="../How To/send_options.html">Send <wbr>Messages <wbr>Options</a>
+					</li>
+					<li class=" pp-nav pp-page">
+						<a href="../How To/send_functions.html">Send <wbr>Messages</a>
+					</li>
+					<li class=" pp-nav pp-page">
+						<a href="../How To/profile_functions.html">Profile <wbr>Functions</a>
+					</li>
+					<li class=" pp-nav pp-page">
+						<a href="../How To/retrieving_data.html">Retrieving <wbr>Data</a>
+					</li>
+					<li class=" pp-nav pp-page">
+						<a href="../How To/events.html">Events</a>
+					</li>
+					<li class="label pp-nav pp-group">
+						<span>Management</span>
+					</li>
+					<li class=" pp-nav pp-page">
+						<a href="../Management/group_functions.html">Group <wbr>Management</a>
+					</li>
+					<li class=" pp-nav pp-page">
+						<a href="../Management/downloading_files.html">Downloading <wbr>Files</a>
+					</li>
+					<li class="label pp-nav pp-group">
+						<span>API</span>
+					</li>
+					<li class=" ">
+						<a href="../../modules.html">Exports</a>
+					</li>
+				</ul>
+			</nav>
+			<nav class="tsd-navigation secondary menu-sticky">
+				<ul class="before-current">
+				</ul>
+			</nav>
+		</div>
+	</div>
+</div>
+<footer class="with-border-bottom">
+	<div class="container">
+		<h2>Legend</h2>
+		<div class="tsd-legend-group">
+			<ul class="tsd-legend">
+				<li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited method</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+<div class="container tsd-generator">
+	<p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p>
+</div>
+<div class="overlay"></div>
+<script src="../../assets/js/main.js"></script>
+</body>
+</html>

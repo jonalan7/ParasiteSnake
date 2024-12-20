@@ -1,0 +1,288 @@
+<!doctype html>
+<html class="default no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Events | hydra-bot - v1.0.35</title>
+	<meta name="description" content="Documentation for hydra-bot - v1.0.35">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="../../assets/css/main.css">
+	<link rel="stylesheet" href="../../assets/css/pages.css">
+	<script async src="../../assets/js/search.js" id="search-script"></script>
+</head>
+<body>
+<header>
+	<div class="tsd-page-toolbar">
+		<div class="container">
+			<div class="table-wrap">
+				<div class="table-cell" id="tsd-search" data-index="../../assets/js/search.json" data-base="../..">
+					<div class="field">
+						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
+						<input id="tsd-search-field" type="text" />
+					</div>
+					<ul class="results">
+						<li class="state loading">Preparing search index...</li>
+						<li class="state failure">The search index is not available</li>
+					</ul>
+					<a href="../../index.html" class="title">hydra-bot - v1.0.35</a>
+				</div>
+				<div class="table-cell" id="tsd-widgets">
+					<div id="tsd-filter">
+						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
+						<div class="tsd-filter-group">
+							<div class="tsd-select" id="tsd-filter-visibility">
+								<span class="tsd-select-label">All</span>
+								<ul class="tsd-select-list">
+									<li data-value="public">Public</li>
+									<li data-value="protected">Public/Protected</li>
+									<li data-value="private" class="selected">All</li>
+								</ul>
+							</div>
+							<input type="checkbox" id="tsd-filter-inherited" checked />
+							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+							<input type="checkbox" id="tsd-filter-externals" checked />
+							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
+						</div>
+					</div>
+					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="tsd-page-title">
+		<div class="container">
+			<ul class="tsd-breadcrumb">
+				<li>
+					<a href="../../modules.html">hydra-bot - v1.0.35</a>
+				</li>
+				<li>
+					<a href="send_options.html">How To</a>
+				</li>
+				<li>
+					<a href="events.html">Events</a>
+				</li>
+			</ul>
+			<h1>Events</h1>
+		</div>
+	</div>
+</header>
+<div class="container container-main">
+	<div class="row">
+		<div class="col-8 col-content">
+			<div class="tsd-panel tsd-typography">
+				<p>The <strong>Hydra-Bot</strong> uses asynchronous events to provide clearer understanding and streamline workflows.
+					You can listen for information on each aspect separately.
+				For example:</p>
+				<ul>
+					<li>Receive information about the <strong>QR Code</strong>;</li>
+					<li>Monitor the browser interface to determine if the bot is on the chat page, syncing, or facing conflicts, among other states;</li>
+					<li>Obtain data about the connection status, such as whether it&#39;s <strong>connected</strong> or <strong>disconnected</strong>;
+					and much more!</li>
+				</ul>
+				<a href="#summary" id="summary" style="color: inherit; text-decoration: none;">
+					<h2>Summary</h2>
+				</a>
+				<ul>
+					<li><a href="#interfacechange"><strong>interfaceChange</strong></a> - Event triggered when there&#39;s a change in the WhatsApp interface</li>
+					<li><a href="#qrcode"><strong>qrcode</strong></a> - Event triggered when a QR code is generated, typically used for authentication</li>
+					<li><a href="#connection"><strong>connection</strong></a> - Event triggered when there is a connection change, such as connection loss or establishment</li>
+					<li><a href="#neweditmessage"><strong>newEditMessage</strong></a> - Event triggered when a message is edited</li>
+					<li><a href="#newdeletemessage"><strong>newDeleteMessage</strong></a> - Event triggered when a message is deleted</li>
+					<li><a href="#onintroreactionmessage"><strong>onIntroReactionMessage</strong></a> - Event triggered when there is a new intro reaction (emoji) to a message</li>
+					<li><a href="#onreactionmessage"><strong>onReactionMessage</strong></a> - Event triggered when an emoji reaction is added to an existing message</li>
+					<li><a href="#newonack"><strong>newOnAck</strong></a> - Event triggered to return the status of each message (e.g., read, delivered, etc.)</li>
+				</ul>
+				<a href="#interfacechange" id="interfacechange" style="color: inherit; text-decoration: none;">
+					<h3>interfaceChange</h3>
+				</a>
+				<p>The <strong>interfaceChange</strong> event, as the name suggests, monitors any changes in the interface of the client connected to WhatsApp. For instance, if the client is on the <strong>QR</strong> code screen, the event will trigger a callback with the interface <strong>&quot;QR,&quot;</strong> representing the <strong>QR Code</strong> page. If it is <strong>&quot;MAIN,&quot;</strong> it will indicate the main chat page, and so on. Below are the possible statuses that can be returned.</p>
+				<pre><code class="language-javascript"><span style="color: #008000">// The &quot;interfaceChange&quot; event can return the following interface states:</span>
+<span style="color: #008000">// QR - QR code page.</span>
+<span style="color: #008000">// MAIN - Chat page.</span>
+<span style="color: #008000">// CONNECTION - Connection.</span>
+<span style="color: #008000">// SYNCING - Loading page, waiting for data from the smartphone.</span>
+<span style="color: #008000">// OFFLINE - Offline page, when there is no internet connection.</span>
+<span style="color: #008000">// CONFLICT - Conflict page, when another WhatsApp Web session is open.</span>
+<span style="color: #008000">// PROXYBLOCK - Blocked page due to proxy restrictions.</span>
+<span style="color: #008000">// TOS_BLOCK - Blocked page (Terms of Service violation).</span>
+<span style="color: #008000">// SMB_TOS_BLOCK - Blocked page (Terms of Service violation for SMB users).</span>
+<span style="color: #008000">// DEPRECATED_VERSION - Deprecated version page.</span>
+
+<span style="color: #008000">// The change information can include elements like screen changes or navigation.</span>
+<span style="color: #001080">ev</span><span style="color: #000000">.</span><span style="color: #795E26">on</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;interfaceChange&quot;</span><span style="color: #000000">, (</span><span style="color: #001080">change</span><span style="color: #000000">: </span><span style="color: #267F99">any</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">  </span><span style="color: #008000">// Processes the interface change, like navigation between screens</span>
+<span style="color: #000000">  </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;Interface change detected:&quot;</span><span style="color: #000000">, </span><span style="color: #001080">change</span><span style="color: #000000">);</span>
+<span style="color: #000000">});</span>
+</code></pre>
+				<a href="#qrcode" id="qrcode" style="color: inherit; text-decoration: none;">
+					<h3>qrcode</h3>
+				</a>
+				<p>When the browser is redirected to the <strong>QR Code</strong> page, this event is triggered. It provides the <strong>QR Code</strong> in <strong>base64 format</strong>, allowing you to use it wherever you want!</p>
+				<pre><code class="language-javascript"><span style="color: #008000">// The QR code is sent to the client as a string or object containing data for login.</span>
+<span style="color: #001080">ev</span><span style="color: #000000">.</span><span style="color: #795E26">on</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;qrcode&quot;</span><span style="color: #000000">, (</span><span style="color: #001080">qrcode</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">  </span><span style="color: #008000">// Displays the generated QR code for WhatsApp Web authentication</span>
+<span style="color: #000000">  </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;QR Code for authentication:&quot;</span><span style="color: #000000">, </span><span style="color: #001080">qrcode</span><span style="color: #000000">);</span>
+<span style="color: #000000">});</span>
+</code></pre>
+				<a href="#connection" id="connection" style="color: inherit; text-decoration: none;">
+					<h3>connection</h3>
+				</a>
+				<p>This event provides information about the <strong>connection status</strong>, indicating whether the client is <strong>connected</strong> or <strong>disconnected</strong>, whether the browser was closed, if something is being <strong>downloaded</strong>, or if it failed to access the WhatsApp page, among other things. In short, it monitors the user&#39;s connection!</p>
+				<pre><code class="language-javascript"><span style="color: #008000">// Connection data may include network status or connection errors.</span>
+<span style="color: #001080">ev</span><span style="color: #000000">.</span><span style="color: #795E26">on</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;connection&#039;</span><span style="color: #000000">, </span><span style="color: #0000FF">async</span><span style="color: #000000"> (</span><span style="color: #001080">conn</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">  </span><span style="color: #008000">// Displays information about the connection status</span>
+<span style="color: #000000">  </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;Connection status:&quot;</span><span style="color: #000000">, </span><span style="color: #001080">conn</span><span style="color: #000000">);</span>
+<span style="color: #000000">  </span><span style="color: #AF00DB">if</span><span style="color: #000000"> (</span><span style="color: #001080">conn</span><span style="color: #000000">.</span><span style="color: #001080">connect</span><span style="color: #000000">) {</span>
+<span style="color: #000000">    </span><span style="color: #008000">// Was connected to whatsapp chat</span>
+<span style="color: #000000">    </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">error</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;Has connected&quot;</span><span style="color: #000000">);</span>
+<span style="color: #000000">  }</span>
+<span style="color: #000000">});</span>
+</code></pre>
+				<a href="#neweditmessage" id="neweditmessage" style="color: inherit; text-decoration: none;">
+					<h3>newEditMessage</h3>
+				</a>
+				<p>The event is triggered whenever a new message is edited, either by the <strong>recipient</strong> or the <strong>sender</strong>.</p>
+				<pre><code class="language-javascript"><span style="color: #008000">// The edited message may include the previous content and the new content.</span>
+<span style="color: #001080">ev</span><span style="color: #000000">.</span><span style="color: #795E26">on</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;newEditMessage&quot;</span><span style="color: #000000">, </span><span style="color: #0000FF">async</span><span style="color: #000000"> (</span><span style="color: #001080">editMessage</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">  </span><span style="color: #008000">// Processes the edited message by checking changes in content</span>
+<span style="color: #000000">  </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;Message edited:&quot;</span><span style="color: #000000">, </span><span style="color: #001080">editMessage</span><span style="color: #000000">);</span>
+<span style="color: #000000">});</span>
+</code></pre>
+				<a href="#newdeletemessage" id="newdeletemessage" style="color: inherit; text-decoration: none;">
+					<h3>newDeleteMessage</h3>
+				</a>
+				<p>The event is triggered whenever a message is <strong>deleted</strong>.</p>
+				<pre><code class="language-javascript"><span style="color: #008000">// The deleted message may include the message ID and other related details.</span>
+<span style="color: #001080">ev</span><span style="color: #000000">.</span><span style="color: #795E26">on</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;newDeleteMessage&quot;</span><span style="color: #000000">, </span><span style="color: #0000FF">async</span><span style="color: #000000"> (</span><span style="color: #001080">deleteMessage</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">  </span><span style="color: #008000">// Processes the deletion of the message and notifies the user</span>
+<span style="color: #000000">  </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;Message deleted:&quot;</span><span style="color: #000000">, </span><span style="color: #001080">deleteMessage</span><span style="color: #000000">);</span>
+<span style="color: #000000">});</span>
+</code></pre>
+				<a href="#onintroreactionmessage" id="onintroreactionmessage" style="color: inherit; text-decoration: none;">
+					<h3>onIntroReactionMessage</h3>
+				</a>
+				<p>This event listens for all new emojis in a chat. When the chat is opened, all <strong>emojis</strong> are loaded.</p>
+				<pre><code class="language-javascript"><span style="color: #008000">// This can be used to analyze which reactions were added to new messages.</span>
+<span style="color: #001080">ev</span><span style="color: #000000">.</span><span style="color: #795E26">on</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;onIntroReactionMessage&quot;</span><span style="color: #000000">, </span><span style="color: #0000FF">async</span><span style="color: #000000"> (</span><span style="color: #001080">introReaction</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">  </span><span style="color: #008000">// Processes the intro reaction (emoji) to the new message</span>
+<span style="color: #000000">  </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;New intro reaction received:&quot;</span><span style="color: #000000">, </span><span style="color: #001080">introReaction</span><span style="color: #000000">);</span>
+<span style="color: #000000">});</span>
+</code></pre>
+				<a href="#onreactionmessage" id="onreactionmessage" style="color: inherit; text-decoration: none;">
+					<h3>onReactionMessage</h3>
+				</a>
+				<p>Sempre que uma mensagem receber uma reação com um <strong>emoji</strong>, você receberá o <strong>ID da mensagem</strong>, o emoji que foi adicionado ou removido e a lista completa de todos os emojis associados à mensagem.</p>
+				<pre><code class="language-javascript"><span style="color: #008000">// The reaction may include details like the emoji, sender, and associated message.</span>
+<span style="color: #001080">ev</span><span style="color: #000000">.</span><span style="color: #795E26">on</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;onReactionMessage&quot;</span><span style="color: #000000">, </span><span style="color: #0000FF">async</span><span style="color: #000000"> (</span><span style="color: #001080">reaction</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">  </span><span style="color: #008000">// Processes the reaction added to an existing message</span>
+<span style="color: #000000">  </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;Reaction added to message:&quot;</span><span style="color: #000000">, </span><span style="color: #001080">reaction</span><span style="color: #000000">);</span>
+<span style="color: #000000">});</span>
+</code></pre>
+				<a href="#newonack" id="newonack" style="color: inherit; text-decoration: none;">
+					<h3>newOnAck</h3>
+				</a>
+				<p>When you send a message and obtain its <strong>ID</strong>, you can check the message status through this event. You can find out if the message was sent, if there was an error, if it&#39;s pending, and other situations.</p>
+				<pre><code class="language-javascript"><span style="color: #008000">// This can include data such as delivery and read status, allowing message state tracking.</span>
+<span style="color: #001080">ev</span><span style="color: #000000">.</span><span style="color: #795E26">on</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;newOnAck&quot;</span><span style="color: #000000">, </span><span style="color: #0000FF">async</span><span style="color: #000000"> (</span><span style="color: #001080">event</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">  </span><span style="color: #008000">// To monitor the status of each message, the following parameters can be returned:</span>
+<span style="color: #000000">  </span><span style="color: #008000">// SENDER_BACKFILL_SENT: -7   // Message sent after a backfill by the sender.</span>
+<span style="color: #000000">  </span><span style="color: #008000">// INACTIVE_RECEIVED: -6      // Message received but not active.</span>
+<span style="color: #000000">  </span><span style="color: #008000">// CONTENT_UNUPLOADABLE: -5   // Message content could not be uploaded.</span>
+<span style="color: #000000">  </span><span style="color: #008000">// CONTENT_TOO_BIG: -4        // Message content exceeds the size limit.</span>
+<span style="color: #000000">  </span><span style="color: #008000">// CONTENT_GONE: -3           // Message content is no longer available.</span>
+<span style="color: #000000">  </span><span style="color: #008000">// EXPIRED: -2                // Message expired and cannot be delivered.</span>
+<span style="color: #000000">  </span><span style="color: #008000">// FAILED: -1                 // Message delivery failed.</span>
+<span style="color: #000000">  </span><span style="color: #008000">// CLOCK: 0                   // Message is pending (waiting to be sent).</span>
+<span style="color: #000000">  </span><span style="color: #008000">// SENT: 1                    // Message has been sent.</span>
+<span style="color: #000000">  </span><span style="color: #008000">// RECEIVED: 2                // Message has been received.</span>
+<span style="color: #000000">  </span><span style="color: #008000">// READ: 3                    // Message has been read.</span>
+<span style="color: #000000">  </span><span style="color: #008000">// PLAYED: 4                  // Media message has been played.</span>
+<span style="color: #000000">  </span><span style="color: #008000">// Processes the acknowledgment status of the message</span>
+<span style="color: #000000">  </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;Message ack status:&quot;</span><span style="color: #000000">, </span><span style="color: #001080">event</span><span style="color: #000000">);</span>
+<span style="color: #000000">});</span>
+</code></pre>
+			</div>
+		</div>
+		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+			<nav class="tsd-navigation primary">
+				<ul>
+					<li class="label pp-nav pp-group">
+						<span>Getting <wbr>Started</span>
+					</li>
+					<li class=" pp-nav pp-page">
+						<a href="../Getting Started/installation.html">Installation</a>
+					</li>
+					<li class=" pp-nav pp-page pp-parent">
+						<a href="../Getting Started/web_service.html">Web service</a>
+					</li>
+					<li class=" pp-nav pp-page">
+						<a href="../Getting Started/start_bot.html">Start <wbr>Bot</a>
+					</li>
+					<li class="label pp-nav pp-group">
+						<span>How <wbr>To</span>
+					</li>
+					<li class=" pp-nav pp-page">
+						<a href="send_options.html">Send <wbr>Messages <wbr>Options</a>
+					</li>
+					<li class=" pp-nav pp-page">
+						<a href="send_functions.html">Send <wbr>Messages</a>
+					</li>
+					<li class=" pp-nav pp-page">
+						<a href="profile_functions.html">Profile <wbr>Functions</a>
+					</li>
+					<li class=" pp-nav pp-page">
+						<a href="retrieving_data.html">Retrieving <wbr>Data</a>
+					</li>
+					<li class="current pp-nav pp-page">
+						<a href="events.html">Events</a>
+					</li>
+					<li class="label pp-nav pp-group">
+						<span>Management</span>
+					</li>
+					<li class=" pp-nav pp-page">
+						<a href="../Management/group_functions.html">Group <wbr>Management</a>
+					</li>
+					<li class=" pp-nav pp-page">
+						<a href="../Management/downloading_files.html">Downloading <wbr>Files</a>
+					</li>
+					<li class="label pp-nav pp-group">
+						<span>API</span>
+					</li>
+					<li class=" ">
+						<a href="../../modules.html">Exports</a>
+					</li>
+				</ul>
+			</nav>
+			<nav class="tsd-navigation secondary menu-sticky">
+				<ul class="before-current">
+				</ul>
+			</nav>
+		</div>
+	</div>
+</div>
+<footer class="with-border-bottom">
+	<div class="container">
+		<h2>Legend</h2>
+		<div class="tsd-legend-group">
+			<ul class="tsd-legend">
+				<li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited method</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+<div class="container tsd-generator">
+	<p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p>
+</div>
+<div class="overlay"></div>
+<script src="../../assets/js/main.js"></script>
+</body>
+</html>

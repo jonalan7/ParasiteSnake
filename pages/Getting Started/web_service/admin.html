@@ -1,0 +1,342 @@
+<!doctype html>
+<html class="default no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Administration | hydra-bot - v1.0.35</title>
+	<meta name="description" content="Documentation for hydra-bot - v1.0.35">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="../../../assets/css/main.css">
+	<link rel="stylesheet" href="../../../assets/css/pages.css">
+	<script async src="../../../assets/js/search.js" id="search-script"></script>
+</head>
+<body>
+<header>
+	<div class="tsd-page-toolbar">
+		<div class="container">
+			<div class="table-wrap">
+				<div class="table-cell" id="tsd-search" data-index="../../../assets/js/search.json" data-base="../../..">
+					<div class="field">
+						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
+						<input id="tsd-search-field" type="text" />
+					</div>
+					<ul class="results">
+						<li class="state loading">Preparing search index...</li>
+						<li class="state failure">The search index is not available</li>
+					</ul>
+					<a href="../../../index.html" class="title">hydra-bot - v1.0.35</a>
+				</div>
+				<div class="table-cell" id="tsd-widgets">
+					<div id="tsd-filter">
+						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
+						<div class="tsd-filter-group">
+							<div class="tsd-select" id="tsd-filter-visibility">
+								<span class="tsd-select-label">All</span>
+								<ul class="tsd-select-list">
+									<li data-value="public">Public</li>
+									<li data-value="protected">Public/Protected</li>
+									<li data-value="private" class="selected">All</li>
+								</ul>
+							</div>
+							<input type="checkbox" id="tsd-filter-inherited" checked />
+							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+							<input type="checkbox" id="tsd-filter-externals" checked />
+							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
+						</div>
+					</div>
+					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="tsd-page-title">
+		<div class="container">
+			<ul class="tsd-breadcrumb">
+				<li>
+					<a href="../../../modules.html">hydra-bot - v1.0.35</a>
+				</li>
+				<li>
+					<a href="../installation.html">Getting Started</a>
+				</li>
+				<li>
+					<a href="../web_service.html">Web service</a>
+				</li>
+				<li>
+					<a href="admin.html">Administration</a>
+				</li>
+			</ul>
+			<h1>Administration</h1>
+		</div>
+	</div>
+</header>
+<div class="container container-main">
+	<div class="row">
+		<div class="col-8 col-content">
+			<div class="tsd-panel tsd-typography">
+				<a href="#example-postman" id="example-postman" style="color: inherit; text-decoration: none;">
+					<h1>Example Postman</h1>
+				</a>
+				<p>Use <strong>Postman</strong> to test the routes!
+					<a href="https://github.com/jonalan7/Hydra-bot/blob/master/Postman/postman_collection.json">Postman example</a>
+				<a href="https://www.postman.com/downloads/">Download Postman</a></p>
+				<a href="#commands-for-administration-via-terminal" id="commands-for-administration-via-terminal" style="color: inherit; text-decoration: none;">
+					<h3>Commands for administration via terminal</h3>
+				</a>
+				<p>To start the administration interface, run the following command in the terminal:</p>
+				<pre><code class="language-bash"><span style="color: #000000">&gt; yarn admin</span>
+</code></pre>
+				<p>Install yarn Ubuntu:</p>
+				<pre><code class="language-bash"><span style="color: #000000">&gt; curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -</span>
+<span style="color: #000000">&gt; </span><span style="color: #795E26">echo</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;deb https://dl.yarnpkg.com/debian/ stable main&quot;</span><span style="color: #000000"> | sudo tee /etc/apt/sources.list.d/yarn.list</span>
+<span style="color: #000000">&gt; sudo apt update &amp;&amp; sudo apt install yarn</span>
+<span style="color: #000000">&gt; yarn</span>
+</code></pre>
+				<a href="#what-is-an-administrator-for" id="what-is-an-administrator-for" style="color: inherit; text-decoration: none;">
+					<h4>what is an administrator for?</h4>
+				</a>
+				<p>Administrators are responsible for managing API users via Webhook. They can execute commands that allow creating, deleting, and managing user data.</p>
+				<a href="#available-commands-in-the-terminal-for-administration" id="available-commands-in-the-terminal-for-administration" style="color: inherit; text-decoration: none;">
+					<h2>Available Commands in the Terminal for Administration:</h2>
+				</a>
+				<p>Here is the list of commands an administrator can use in the terminal to manage users:</p>
+				<table>
+					<thead>
+						<tr>
+							<th>Command</th>
+							<th>Description</th>
+						</tr>
+					</thead>
+					<tbody><tr>
+							<td><code>/create</code></td>
+							<td>Create a new user</td>
+						</tr>
+						<tr>
+							<td><code>/delete</code></td>
+							<td>Delete an existing user</td>
+						</tr>
+						<tr>
+							<td><code>/selectid</code></td>
+							<td>Show a user by ID</td>
+						</tr>
+						<tr>
+							<td><code>/selectname</code></td>
+							<td>Show a user by name</td>
+						</tr>
+						<tr>
+							<td><code>/getall</code></td>
+							<td>List all users</td>
+						</tr>
+						<tr>
+							<td><code>/deactivate</code></td>
+							<td>Disable user</td>
+						</tr>
+						<tr>
+							<td><code>/activate</code></td>
+							<td>Activate User</td>
+						</tr>
+						<tr>
+							<td><code>/changename</code></td>
+							<td>Change a user&#39;s name</td>
+						</tr>
+						<tr>
+							<td><code>/password</code></td>
+							<td>Change a user&#39;s password</td>
+						</tr>
+						<tr>
+							<td><code>/cls</code></td>
+							<td>Clear screen/terminal</td>
+						</tr>
+						<tr>
+							<td><code>/help</code></td>
+							<td>List all available commands for administration</td>
+						</tr>
+						<tr>
+							<td><code>/exit</code></td>
+							<td>Exit the administration manager</td>
+						</tr>
+				</tbody></table>
+				<a href="#administration-via-webhook" id="administration-via-webhook" style="color: inherit; text-decoration: none;">
+					<h3>Administration via Webhook</h3>
+				</a>
+				<p>These routes allow you to manage and query users using a REST API. An administrator can access these routes by authenticating with a specific header that includes the admin credentials.</p>
+				<p>To authenticate requests via Webhook, you need to include the following headers in the request:</p>
+				<pre><code class="language-json"><span style="color: #000000">{</span>
+<span style="color: #000000">    </span><span style="color: #0451A5">&quot;Content-Type&quot;</span><span style="color: #000000"> : </span><span style="color: #A31515">&quot;application/json&quot;</span><span style="color: #000000">,</span>
+<span style="color: #000000">    </span><span style="color: #0451A5">&quot;admin&quot;</span><span style="color: #000000"> : </span><span style="color: #A31515">&quot;admin&quot;</span><span style="color: #000000">,</span>
+<span style="color: #000000">    </span><span style="color: #0451A5">&quot;admin_pass&quot;</span><span style="color: #000000"> : </span><span style="color: #A31515">&quot;admin&quot;</span>
+<span style="color: #000000">}</span>
+</code></pre>
+				<a href="#list-of-routes-for-user-management" id="list-of-routes-for-user-management" style="color: inherit; text-decoration: none;">
+					<h3>List of Routes for User Management:</h3>
+				</a>
+				<p>With an <a href="#commands-for-administration-via-terminal">administrator</a> (there is a default administrator, the username and password as admin), he can access via Web Service with the following routes:</p>
+				<table>
+					<thead>
+						<tr>
+							<th>Type</th>
+							<th>Route to browser</th>
+							<th>Description</th>
+							<th>Body</th>
+						</tr>
+					</thead>
+					<tbody><tr>
+							<td>POST</td>
+							<td><code>/create_user</code></td>
+							<td>Create user</td>
+							<td><code>{&quot;name&quot;:&quot;USE&quot;,&quot;password&quot;:&quot;USER PASSWORD&quot;}</code></td>
+						</tr>
+						<tr>
+							<td>DEL</td>
+							<td><code>/delete_user/ID_USE</code></td>
+							<td>Delete user</td>
+							<td><code>EMPTY</code></td>
+						</tr>
+						<tr>
+							<td>GET</td>
+							<td><code>/get_user_by_id/ID_USE</code></td>
+							<td>Show user by ID</td>
+							<td><code>EMPTY</code></td>
+						</tr>
+						<tr>
+							<td>GET</td>
+							<td><code>/get_all_users</code></td>
+							<td>List all users</td>
+							<td><code>EMPTY</code></td>
+						</tr>
+						<tr>
+							<td>PUT</td>
+							<td><code>/deactivate_user</code></td>
+							<td>Disable user</td>
+							<td><code>{&quot;id&quot;:&quot;USER ID&quot;}</code></td>
+						</tr>
+						<tr>
+							<td>PUT</td>
+							<td><code>/activate_user</code></td>
+							<td>Activate User</td>
+							<td><code>{&quot;id&quot;:&quot;USER ID&quot;}</code></td>
+						</tr>
+						<tr>
+							<td>PUT</td>
+							<td><code>/change_name</code></td>
+							<td>Change username</td>
+							<td><code>{&quot;id&quot;:&quot;USER ID&quot;,&quot;name&quot;:&quot;NEW USERNAME&quot;}</code></td>
+						</tr>
+						<tr>
+							<td>PUT</td>
+							<td><code>/change_password</code></td>
+							<td>Change user password</td>
+							<td><code>{&quot;id&quot;:&quot;USER ID&quot;,&quot;password&quot;:&quot;NEW SECURE PASSWORD&quot;}</code></td>
+						</tr>
+				</tbody></table>
+				<a href="#how-to-use-the-routes" id="how-to-use-the-routes" style="color: inherit; text-decoration: none;">
+					<h3>How to Use the Routes:</h3>
+				</a>
+				<ul>
+					<li><p><strong>POST <code>/create_user</code></strong>: This route creates a new user. Send a JSON body containing the name and password of the user you want to create.</p>
+					</li>
+					<li><p><strong>DELETE <code>/delete_user/USER_ID</code></strong>: This route deletes a specific user by their USER_ID. No body is required in the request.</p>
+					</li>
+					<li><p><strong>GET <code>/get_user_by_id/USER_ID</code></strong>: To retrieve a user by their ID, send a GET request. No body is required.</p>
+					</li>
+					<li><p><strong>GET <code>/get_all_users</code></strong>: This route lists all users. No body is required in the request.</p>
+					</li>
+					<li><p><strong>PUT <code>/deactivate_user</code></strong>: To deactivate a user, send a JSON body containing the USER_ID of the user you want to disable.</p>
+					</li>
+					<li><p><strong>PUT <code>/activate_user</code></strong>: This route activates a disabled user. Send the USER_ID in the request body.</p>
+					</li>
+					<li><p><strong>PUT <code>/change_name</code></strong>: To change a user&#39;s name, send the USER_ID and the new name in the request body.</p>
+					</li>
+					<li><p><strong>PUT <code>/change_password</code></strong>: This route changes a user&#39;s password. Send the USER_ID and the new password in the request body.</p>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+			<nav class="tsd-navigation primary">
+				<ul>
+					<li class="label pp-nav pp-group">
+						<span>Getting <wbr>Started</span>
+					</li>
+					<li class=" pp-nav pp-page">
+						<a href="../installation.html">Installation</a>
+					</li>
+					<li class=" pp-nav pp-page pp-parent pp-active">
+						<a href="../web_service.html">Web service</a>
+					</li>
+					<li class="current pp-nav pp-page pp-child">
+						<a href="admin.html">Administration</a>
+					</li>
+					<li class=" pp-nav pp-page pp-child">
+						<a href="user.html">User <wbr>Routers</a>
+					</li>
+					<li class=" pp-nav pp-page">
+						<a href="../start_bot.html">Start <wbr>Bot</a>
+					</li>
+					<li class="label pp-nav pp-group">
+						<span>How <wbr>To</span>
+					</li>
+					<li class=" pp-nav pp-page">
+						<a href="../../How To/send_options.html">Send <wbr>Messages <wbr>Options</a>
+					</li>
+					<li class=" pp-nav pp-page">
+						<a href="../../How To/send_functions.html">Send <wbr>Messages</a>
+					</li>
+					<li class=" pp-nav pp-page">
+						<a href="../../How To/profile_functions.html">Profile <wbr>Functions</a>
+					</li>
+					<li class=" pp-nav pp-page">
+						<a href="../../How To/retrieving_data.html">Retrieving <wbr>Data</a>
+					</li>
+					<li class=" pp-nav pp-page">
+						<a href="../../How To/events.html">Events</a>
+					</li>
+					<li class="label pp-nav pp-group">
+						<span>Management</span>
+					</li>
+					<li class=" pp-nav pp-page">
+						<a href="../../Management/group_functions.html">Group <wbr>Management</a>
+					</li>
+					<li class=" pp-nav pp-page">
+						<a href="../../Management/downloading_files.html">Downloading <wbr>Files</a>
+					</li>
+					<li class="label pp-nav pp-group">
+						<span>API</span>
+					</li>
+					<li class=" ">
+						<a href="../../../modules.html">Exports</a>
+					</li>
+				</ul>
+			</nav>
+			<nav class="tsd-navigation secondary menu-sticky">
+				<ul class="before-current">
+				</ul>
+			</nav>
+		</div>
+	</div>
+</div>
+<footer class="with-border-bottom">
+	<div class="container">
+		<h2>Legend</h2>
+		<div class="tsd-legend-group">
+			<ul class="tsd-legend">
+				<li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited method</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+<div class="container tsd-generator">
+	<p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p>
+</div>
+<div class="overlay"></div>
+<script src="../../../assets/js/main.js"></script>
+</body>
+</html>

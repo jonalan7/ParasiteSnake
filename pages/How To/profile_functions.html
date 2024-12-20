@@ -1,0 +1,210 @@
+<!doctype html>
+<html class="default no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Profile Functions | hydra-bot - v1.0.35</title>
+	<meta name="description" content="Documentation for hydra-bot - v1.0.35">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="../../assets/css/main.css">
+	<link rel="stylesheet" href="../../assets/css/pages.css">
+	<script async src="../../assets/js/search.js" id="search-script"></script>
+</head>
+<body>
+<header>
+	<div class="tsd-page-toolbar">
+		<div class="container">
+			<div class="table-wrap">
+				<div class="table-cell" id="tsd-search" data-index="../../assets/js/search.json" data-base="../..">
+					<div class="field">
+						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
+						<input id="tsd-search-field" type="text" />
+					</div>
+					<ul class="results">
+						<li class="state loading">Preparing search index...</li>
+						<li class="state failure">The search index is not available</li>
+					</ul>
+					<a href="../../index.html" class="title">hydra-bot - v1.0.35</a>
+				</div>
+				<div class="table-cell" id="tsd-widgets">
+					<div id="tsd-filter">
+						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
+						<div class="tsd-filter-group">
+							<div class="tsd-select" id="tsd-filter-visibility">
+								<span class="tsd-select-label">All</span>
+								<ul class="tsd-select-list">
+									<li data-value="public">Public</li>
+									<li data-value="protected">Public/Protected</li>
+									<li data-value="private" class="selected">All</li>
+								</ul>
+							</div>
+							<input type="checkbox" id="tsd-filter-inherited" checked />
+							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+							<input type="checkbox" id="tsd-filter-externals" checked />
+							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
+						</div>
+					</div>
+					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="tsd-page-title">
+		<div class="container">
+			<ul class="tsd-breadcrumb">
+				<li>
+					<a href="../../modules.html">hydra-bot - v1.0.35</a>
+				</li>
+				<li>
+					<a href="send_options.html">How To</a>
+				</li>
+				<li>
+					<a href="profile_functions.html">Profile Functions</a>
+				</li>
+			</ul>
+			<h1>Profile Functions</h1>
+		</div>
+	</div>
+</header>
+<div class="container container-main">
+	<div class="row">
+		<div class="col-8 col-content">
+			<div class="tsd-panel tsd-typography">
+				<p>Here you will find features related to the connected client&#39;s profile, such as displaying the <strong>WhatsApp Web version</strong>, user information like <strong>name</strong> and <strong>image</strong>, among others.
+					Additionally, you can <strong>close the client&#39;s browser</strong> or <strong>disconnect them from WhatsApp</strong>.
+				Several similar features will be available here.</p>
+				<a href="#summary" id="summary" style="color: inherit; text-decoration: none;">
+					<h2>Summary</h2>
+				</a>
+				<ul>
+					<li><a href="#gethost"><strong>getHost</strong></a> - Retrieve information about the device connected to the bot.</li>
+					<li><a href="#getwaversion"><strong>getWAVersion</strong></a> - Retrieve the version of WhatsApp currently in use.</li>
+					<li><a href="#close"><strong>close</strong></a> - Closes page and browser client</li>
+					<li><a href="#logoutsession"><strong>logoutSession</strong></a> - Logout from WhatsApp Web</li>
+					<li><a href="#screenshot"><strong>screenshot</strong></a> - This function captures an image of the browser screen</li>
+				</ul>
+				<a href="#gethost" id="gethost" style="color: inherit; text-decoration: none;">
+					<h2>getHost</h2>
+				</a>
+				<p>This function is used to retrieve information about the main user, such as name, image, and more.</p>
+				<pre><code class="language-javascript">
+<span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #001080">client</span><span style="color: #000000">.</span><span style="color: #795E26">getHost</span><span style="color: #000000">();</span>
+
+</code></pre>
+				<a href="#getwaversion" id="getwaversion" style="color: inherit; text-decoration: none;">
+					<h2>getWAVersion</h2>
+				</a>
+				<p>Get information about the current version of WhatsApp Web.</p>
+				<pre><code class="language-javascript">
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">version</span><span style="color: #000000"> = </span><span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #001080">client</span><span style="color: #000000">.</span><span style="color: #795E26">getWAVersion</span><span style="color: #000000">();</span>
+
+</code></pre>
+				<a href="#close" id="close" style="color: inherit; text-decoration: none;">
+					<h2>close</h2>
+				</a>
+				<p>This function closes the client&#39;s browser, shutting down the WhatsApp page.</p>
+				<pre><code class="language-javascript">
+<span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #001080">client</span><span style="color: #000000">.</span><span style="color: #795E26">browserClose</span><span style="color: #000000">();</span>
+
+</code></pre>
+				<a href="#logout" id="logout" style="color: inherit; text-decoration: none;">
+					<h2>logout</h2>
+				</a>
+				<p>This function is used to disconnect the client from WhatsApp.</p>
+				<pre><code class="language-javascript">
+<span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #001080">client</span><span style="color: #000000">.</span><span style="color: #795E26">logoutSession</span><span style="color: #000000">();</span>
+
+</code></pre>
+				<a href="#screenshot" id="screenshot" style="color: inherit; text-decoration: none;">
+					<h2>screenshot</h2>
+				</a>
+				<p>This function captures an image of the browser screen, allowing you to check the navigation behavior through a screenshot.</p>
+				<pre><code class="language-javascript"><span style="color: #008000">// Return base64 image</span>
+<span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #001080">client</span><span style="color: #000000">.</span><span style="color: #795E26">screenshot</span><span style="color: #000000">();</span>
+
+</code></pre>
+			</div>
+		</div>
+		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+			<nav class="tsd-navigation primary">
+				<ul>
+					<li class="label pp-nav pp-group">
+						<span>Getting <wbr>Started</span>
+					</li>
+					<li class=" pp-nav pp-page">
+						<a href="../Getting Started/installation.html">Installation</a>
+					</li>
+					<li class=" pp-nav pp-page pp-parent">
+						<a href="../Getting Started/web_service.html">Web service</a>
+					</li>
+					<li class=" pp-nav pp-page">
+						<a href="../Getting Started/start_bot.html">Start <wbr>Bot</a>
+					</li>
+					<li class="label pp-nav pp-group">
+						<span>How <wbr>To</span>
+					</li>
+					<li class=" pp-nav pp-page">
+						<a href="send_options.html">Send <wbr>Messages <wbr>Options</a>
+					</li>
+					<li class=" pp-nav pp-page">
+						<a href="send_functions.html">Send <wbr>Messages</a>
+					</li>
+					<li class="current pp-nav pp-page">
+						<a href="profile_functions.html">Profile <wbr>Functions</a>
+					</li>
+					<li class=" pp-nav pp-page">
+						<a href="retrieving_data.html">Retrieving <wbr>Data</a>
+					</li>
+					<li class=" pp-nav pp-page">
+						<a href="events.html">Events</a>
+					</li>
+					<li class="label pp-nav pp-group">
+						<span>Management</span>
+					</li>
+					<li class=" pp-nav pp-page">
+						<a href="../Management/group_functions.html">Group <wbr>Management</a>
+					</li>
+					<li class=" pp-nav pp-page">
+						<a href="../Management/downloading_files.html">Downloading <wbr>Files</a>
+					</li>
+					<li class="label pp-nav pp-group">
+						<span>API</span>
+					</li>
+					<li class=" ">
+						<a href="../../modules.html">Exports</a>
+					</li>
+				</ul>
+			</nav>
+			<nav class="tsd-navigation secondary menu-sticky">
+				<ul class="before-current">
+				</ul>
+			</nav>
+		</div>
+	</div>
+</div>
+<footer class="with-border-bottom">
+	<div class="container">
+		<h2>Legend</h2>
+		<div class="tsd-legend-group">
+			<ul class="tsd-legend">
+				<li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited method</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+<div class="container tsd-generator">
+	<p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p>
+</div>
+<div class="overlay"></div>
+<script src="../../assets/js/main.js"></script>
+</body>
+</html>
